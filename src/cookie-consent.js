@@ -112,25 +112,25 @@ function CookieConsent(props) {
     }
 
     function hideDialog() {
-        this.modal.style.display = "none"
+        window.cookieConsentModal.style.display = "none"
     }
 
     function showDialog() {
         documentReady(function () {
-            this.modal = document.getElementById(self.props.modalId)
-            if (!this.modal) {
-                this.modal = document.createElement("div")
-                this.modal.id = self.props.modalId
-                this.modal.innerHTML = self.modalContent
-                document.body.append(this.modal)
-                this.modal.querySelector(".btn-accept-necessary").addEventListener("click", function () {
+            window.cookieConsentModal = document.getElementById(self.props.modalId)
+            if (!window.cookieConsentModal) {
+                window.cookieConsentModal = document.createElement("div")
+                window.cookieConsentModal.id = self.props.modalId
+                window.cookieConsentModal.innerHTML = self.modalContent
+                document.body.append(window.cookieConsentModal)
+                window.cookieConsentModal.querySelector(".btn-accept-necessary").addEventListener("click", function () {
                     setCookie(self.props.cookieName, "false", 365)
                     hideDialog()
                     if(self.props.postSelectionCallback) {
                         self.props.postSelectionCallback()
                     }
                 })
-                this.modal.querySelector(".btn-accept-all").addEventListener("click", function () {
+                window.cookieConsentModal.querySelector(".btn-accept-all").addEventListener("click", function () {
                     setCookie(self.props.cookieName, "true", 365)
                     hideDialog()
                     if(self.props.postSelectionCallback) {
@@ -138,7 +138,7 @@ function CookieConsent(props) {
                     }
                 })
             } else {
-                this.modal.style.display = "block"
+                window.cookieConsentModal.style.display = "block"
             }
         }.bind(this))
     }
