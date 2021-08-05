@@ -158,3 +158,5 @@ function CookieConsent(props) {
     }
 
 }
+
+export default CookieConsent
